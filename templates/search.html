@@ -1,0 +1,8 @@
+{% extends "layout.html"%}
+{% block body %}
+<h1>Search</h1>
+	<form method="POST" action=" {{ url_for("search_endpoint") }}">
+		<input type="text" name="term">
+		<input type="submit" name="Submit">
+	</form>
+{% endblock %}

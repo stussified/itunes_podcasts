@@ -1,6 +1,7 @@
 import requests
 from requests.utils import quote, unquote
 from bs4 import BeautifulSoup
+import json
 
 class Episode:
 
@@ -74,11 +75,36 @@ def genre_scraper():
 	return list_of_genres
 
 
+def search(term):
+	response_list = []
+	url = "https://itunes.apple.com/search"
+	params = {
+		"term": term,
+		"entity": "podcast"
+	}
+	r = requests.get(url, params=params)
+	if r.status_code == 200:
+		response = json.loads(r.text)
+		if response.get("resultCount") > 0:
+			results_list = response.get("results")
+			for result in results_list:
+				artist_name = result.get("artistName")
+				podcast_name = result.get("trackName")
+				podcast_url = result.get("collectionViewUrl")
+
+				result_dict = {
+					"artist_name": artist_name,
+					"podcast_name": podcast_name,
+					"podcast_url": quote(podcast_url, safe="")
+				}
+				response_list.append(result_dict)
+		return response_list
+
 
 def main():
-
+	print search("joe rogan")
 	# podcast_episode_parser("https://itunes.apple.com/ca/podcast/the-joe-rogan-experience/id360084272?mt=2")
 	# podcast_parser("https://itunes.apple.com/ca/genre/podcasts-comedy/id1303?mt=2")
-	print genre_scraper()
+	# print genre_scraper()
 if __name__ == "__main__":
 	main()
