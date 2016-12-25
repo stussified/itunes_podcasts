@@ -102,8 +102,8 @@ def search(term):
 
 
 def main():
-	print search("joe rogan")
-	# podcast_episode_parser("https://itunes.apple.com/ca/podcast/the-joe-rogan-experience/id360084272?mt=2")
+	# print search("joe rogan")
+	podcast_episode_parser("https://itunes.apple.com/ca/podcast/the-joe-rogan-experience/id360084272?mt=2")
 	# podcast_parser("https://itunes.apple.com/ca/genre/podcasts-comedy/id1303?mt=2")
 	# print genre_scraper()
 if __name__ == "__main__":
