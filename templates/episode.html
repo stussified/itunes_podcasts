@@ -1,0 +1,12 @@
+{% extends "layout.html"%}
+{% block body %}
+<div class="container">
+<h1>{{ podcast_name }}</h1>
+<h2>{{ episode_name }}</h2>
+<h3>{{ artist_name }}</h3>
+<audio controls="controls" preload="none">
+<source src= "{{ episode_url }}" type = "audio/mpeg">
+<span>Your browser does not support the audio element</span>
+</audio>
+</div>
+{% endblock %}

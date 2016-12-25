@@ -1,5 +1,7 @@
 from flask import Flask, render_template, url_for, request
 from scraper import podcast_episode_parser, podcast_parser, genre_scraper, search
+from requests.utils import quote, unquote
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -33,6 +35,20 @@ def search_endpoint():
 		return render_template("results.html", results=results)
 	else:
 		return render_template("search.html")
+
+
+@app.route("/episode")
+def episode():
+	# artist_name, podcast_name, episode_name, episode_url
+	artist_name = request.args.get("artist_name")
+	podcast_name = request.args.get("podcast_name")
+	episode_name = request.args.get("episode_name")
+	episode_url = unquote(request.args.get("episode_url"))
+	return render_template("episode.html",
+							artist_name=artist_name,
+							podcast_name=podcast_name,
+							episode_name=episode_name,
+							episode_url=episode_url)
 
 
 if __name__ == "__main__":

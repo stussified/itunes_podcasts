@@ -1,5 +1,6 @@
 {% extends "layout.html"%}
 {% block body %}
+<div class="container">
 <h1>Episodes</h1>
 	<table class="table">
 	<tbody>
@@ -15,16 +16,16 @@
 			<tr>
 				<td>{{ episode.artist_name }}</td>
 				<td>{{ episode.podcast_name }}</td>
-				<td>{{ episode.episode_name }}</td>
+				<td><a href="{{ url_for("episode", artist_name=episode.artist_name, podcast_name=episode.podcast_name, episode_name=episode.episode_name, episode_url=episode.episode_url)}}"> {{ episode.episode_name }}</a></td>
 				<td>
 					<audio controls="controls" preload="none">
 					<source src= "{{ episode.episode_url }}" type = "audio/mpeg">
 					<span>Your browser does not support the audio element</span>
 					</audio>
 				</td>
-
 			</tr>
 		{% endfor %}
 	</tbody>
 	</table>
+	</div>
 {% endblock %}
