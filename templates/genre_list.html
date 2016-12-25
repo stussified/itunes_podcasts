@@ -1,0 +1,10 @@
+{% extends "layout.html"%}
+{% block body %}
+<h1>iTunes Categories</h1>
+<p>This shows the current list of top level categores for podcasts in iTunes.</p>
+	<ul>
+		{% for genre in genre_list %}
+			<li><a href="{{ url_for("podcasts", itunes_url = genre.genre_url) }}"> {{ genre.genre_name }}</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

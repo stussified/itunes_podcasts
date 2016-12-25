@@ -1,0 +1,30 @@
+{% extends "layout.html"%}
+{% block body %}
+<h1>Episodes</h1>
+	<table class="table">
+	<tbody>
+		<thead>
+			<tr>
+				<th>Artist Name</th>
+				<th>Podcast Name</th>
+				<th>Episode Name</th>
+				<th>Play Episode</th>
+			</tr>
+		</thead>
+		{% for episode in episode_list %}
+			<tr>
+				<td>{{ episode.artist_name }}</td>
+				<td>{{ episode.podcast_name }}</td>
+				<td>{{ episode.episode_name }}</td>
+				<td>
+					<audio controls="controls" preload="none">
+					<source src= "{{ episode.episode_url }}" type = "audio/mpeg">
+					<span>Your browser does not support the audio element</span>
+					</audio>
+				</td>
+
+			</tr>
+		{% endfor %}
+	</tbody>
+	</table>
+{% endblock %}

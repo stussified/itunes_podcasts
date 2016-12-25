@@ -1,0 +1,9 @@
+{% extends "layout.html"%}
+{% block body %}
+<h1>Podcasts</h1>
+	<ul>
+		{% for podcast in podcast_list %}
+		<li><a href="{{ url_for("episodes", itunes_url = podcast.podcast_url) }}">{{ podcast.podcast_name }}</a></li>
+		{% endfor%}
+	</ul>
+{% endblock %}
